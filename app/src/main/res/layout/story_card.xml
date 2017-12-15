@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Individual cards for each news story -->
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/story_card"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/story_card_dims"
+    app:cardUseCompatPadding="true"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- ImageView for news story thumbnail image -->
+        <ImageView
+            android:id="@+id/story_image"
+            android:layout_width="@dimen/story_card_dims"
+            android:layout_height="match_parent"
+            android:background="@color/light_blue_no_image"
+            android:contentDescription="@string/story_image_con_desc"
+            android:scaleType="centerCrop"/>
+
+        <!-- News story information container -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/vertical_padding"
+            android:layout_toEndOf="@id/story_image"
+            android:layout_toRightOf="@id/story_image"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <!-- News title -->
+            <TextView
+                android:id="@+id/news_title_text"
+                style="@style/news_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="News Title"/>
+
+            <!-- News section -->
+            <TextView
+                android:id="@+id/section_name_text"
+                style="?android:textAppearanceSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Section Name"/>
+
+            <!-- Date when the news was published -->
+            <TextView
+                android:id="@+id/date_published_text"
+                style="?android:textAppearanceSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Date"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

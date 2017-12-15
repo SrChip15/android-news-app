@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="empty_view_text_size">18sp</dimen>
+    <dimen name="story_card_dims">127dp</dimen>
+    <dimen name="vertical_padding">8dp</dimen>
+</resources>
