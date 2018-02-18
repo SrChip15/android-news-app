@@ -15,16 +15,15 @@ public class MainActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		Context context = getApplicationContext();
 		Toolbar toolbar = findViewById(R.id.toolbar);
 		toolbar.setTitle(getString(R.string.app_name));
-		toolbar.setTitleTextColor(ContextCompat.getColor(context, android.R.color.white));
 		setSupportActionBar(toolbar);
 
 		// Find the view pager that will allow the user to swipe between fragments
 		ViewPager viewPager = findViewById(R.id.viewpager);
 
 		// Give the TabLayout the ViewPager
+		Context context = getApplicationContext();
 		TabLayout tabLayout = findViewById(R.id.sliding_tabs);
 		tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(context, R.color.colorAccent));
 		tabLayout.setTabTextColors(ContextCompat.getColor(context, android.R.color.white),
