@@ -1,6 +1,5 @@
 package com.example.android.thenews;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -26,16 +25,15 @@ public class MainActivity extends AppCompatActivity {
         // Give the TabLayout the ViewPager
         TabLayout tabLayout = findViewById(R.id.sliding_tabs);
 
-        Context context = getApplicationContext();
-        tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(context, R.color.colorAccent));
+        tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(this, R.color.colorAccent));
         tabLayout.setTabTextColors(
-                ContextCompat.getColor(context, android.R.color.white),
-                ContextCompat.getColor(context, android.R.color.black)
+                ContextCompat.getColor(this, android.R.color.white),
+                ContextCompat.getColor(this, android.R.color.black)
         );
         tabLayout.setupWithViewPager(viewPager);
 
         // Create an adapter that knows which fragment should be shown on each page
-        NewsCategoryAdapter adapter = new NewsCategoryAdapter(getSupportFragmentManager());
+        NewsCategoryAdapter adapter = new NewsCategoryAdapter(this, getSupportFragmentManager());
 
         // Set the adapter onto the view pager
         viewPager.setAdapter(adapter);

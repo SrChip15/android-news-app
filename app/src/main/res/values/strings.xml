@@ -6,5 +6,14 @@
     <string name="no_internet_connection">
         No Internet Connection.\nThis app requires internet connection to fetch top stories!
     </string>
+
+    <!-- Label text for refresh menu action -->
     <string name="action_refresh">Refresh</string>
+
+    <!-- Tab pages title text -->
+    <string name="tech_news_title" translatable="true">tech</string>
+    <string name="science_news_title" translatable="true">science</string>
+    <string name="travel_news_title" translatable="true">travel</string>
+    <string name="books_news_title" translatable="true">books</string>
+
 </resources>

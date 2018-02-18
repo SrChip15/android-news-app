@@ -1,78 +1,92 @@
 package com.example.android.thenews;
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 class NewsCategoryAdapter extends FragmentPagerAdapter {
 
-	/** News section names for tab titles */
-	private String tabTitles[] = new String[]{ "Tech", "Science", "Travel", "Books" };
-	private static final String API_KEY = BuildConfig.API_KEY;
+    private Resources resources;
 
-	NewsCategoryAdapter(FragmentManager fm) {
-		super(fm);
-	}
+    NewsCategoryAdapter(Context context, FragmentManager fm) {
+        super(fm);
+        resources = context.getResources();
+    }
 
-	/** Instantiate fragment based on user horizontal scroll position */
-	@Override
-	public Fragment getItem(int position) {
-		// Url along with API key to query the API
-		String category;
+    /** Instantiate fragment based on user horizontal scroll position */
+    @Override
+    public Fragment getItem(int position) {
+        // Url along with API key to query the API
+        String category;
 
-		// Fragment for different news section
-		Fragment fragment;
-		if (position == 0) {
-			// Url for technology news section
-			category = "https://api.nytimes.com/svc/topstories/v2/technology.json?api-key=" + API_KEY;
+        // Fragment for different news section
+        Fragment fragment;
 
-			// Initialize fragment with news section as argument
-			fragment = TopStoriesFragment.newInstance(category);
+        switch (position) {
+            case 0:
+                // Url for technology news section, re-use the tab title text here
+                category = "technology";
 
-			// Return the fragment
-			return fragment;
+                // Initialize fragment with news section as argument
+                fragment = TopStoriesFragment.newInstance(category);
 
-		} else if (position == 1) {
-			// Url for science news section
-			category = "https://api.nytimes.com/svc/topstories/v2/science.json?api-key=" + API_KEY;
+                // Return the fragment
+                return fragment;
+            case 1:
+                // Url for science news section
+                category = resources.getString(R.string.science_news_title);
 
-			// Initialize fragment with news section as argument
-			fragment = TopStoriesFragment.newInstance(category);
+                // Initialize fragment with news section as argument
+                fragment = TopStoriesFragment.newInstance(category);
 
-			// Return the fragment
-			return fragment;
+                // Return the fragment
+                return fragment;
+            case 2:
+                // Url for travel news section
+                category = resources.getString(R.string.travel_news_title);
 
-		} else if (position == 2) {
-			// Url for travel news section
-			category = "https://api.nytimes.com/svc/topstories/v2/travel.json?api-key=" + API_KEY;
+                // Initialize fragment with news section as argument
+                fragment = TopStoriesFragment.newInstance(category);
 
-			// Initialize fragment with news section as argument
-			fragment = TopStoriesFragment.newInstance(category);
+                // Return the fragment
+                return fragment;
+            case 3:
+                // Url for books news section
+                category = resources.getString(R.string.books_news_title);
 
-			// Return the fragment
-			return fragment;
+                // Initialize fragment with news section as argument
+                fragment = TopStoriesFragment.newInstance(category);
 
-		} else {
-			// Url for books news section
-			category = "https://api.nytimes.com/svc/topstories/v2/books.json?api-key=" + API_KEY;
+                // Return the fragment
+                return fragment;
+            default:
+                return null;
+        }
+    }
 
-			// Initialize fragment with news section as argument
-			fragment = TopStoriesFragment.newInstance(category);
+    /** Informs the adapter of the total number of available fragments views */
+    @Override
+    public int getCount() {
+        return 4;
+    }
 
-			// Return the fragment
-			return fragment;
-		}
-	}
+    /** Set tab title */
+    @Override
+    public CharSequence getPageTitle(int position) {
+        switch (position) {
+            case 0:
+                return resources.getString(R.string.tech_news_title);
+            case 1:
+                return resources.getString(R.string.science_news_title);
+            case 2:
+                return resources.getString(R.string.travel_news_title);
+            case 3:
+                return resources.getString(R.string.books_news_title);
+            default:
+                return null;
 
-	/** Informs the adapter of the total number of available fragments views */
-	@Override
-	public int getCount() {
-		return 4;
-	}
-
-	/** Set tab title */
-	@Override
-	public CharSequence getPageTitle(int position) {
-		return tabTitles[position];
-	}
+        }
+    }
 }

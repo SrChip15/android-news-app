@@ -23,6 +23,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import static com.example.android.thenews.BuildConfig.API_KEY;
+
 final class NewsQueryUtils {
 
 	private static final String LOG_TAG = NewsQueryUtils.class.getSimpleName();
@@ -32,9 +34,11 @@ final class NewsQueryUtils {
 	}
 
 	// Main method that has sub-routines to fetch top stories
-	static List<News> fetchNews(String requestUrl) {
+	static List<News> fetchNews(String newsCategory) {
 		// Create valid url object from the requestURL
-		URL url = createUrl(requestUrl);
+		String requestUrl = "https://api.nytimes.com/svc/topstories/v2/%1$s.json?api-key=%2$s";
+		String fullUrl = String.format(requestUrl, newsCategory, API_KEY);
+		URL url = createUrl(fullUrl);
 
 		// Initialize empty String object to hold the parsed JSON response
 		String jsonResponse = "";

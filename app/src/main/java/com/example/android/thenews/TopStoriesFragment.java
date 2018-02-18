@@ -2,6 +2,7 @@ package com.example.android.thenews;
 
 
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,16 +29,19 @@ public class TopStoriesFragment
 		implements LoaderCallbacks<List<News>> {
 
 	/** Adapter that holds the list of top stories */
-	private NewsRecyclerAdapter mAdapter;
+	private NewsRecyclerAdapter adapter;
 
 	/** Loader ID */
 	private static final int LOADER_ID = 1;
 
 	/** News category (fragment initiating parameter) */
-	private String mNewsCategory;
+	private String newsCategory;
 
 	/** Indeterminate progress bar */
-	private ProgressBar mProgressSpinner;
+	private ProgressBar progressSpinner;
+
+	/** String key for news category */
+	private static final String NEWS_CATEGORY = "CATEGORY";
 
 	public TopStoriesFragment() {
 		// Required empty public constructor
@@ -51,7 +56,7 @@ public class TopStoriesFragment
 		Bundle bundle = new Bundle(1);
 
 		// String url parameter to pass arguments when recreating {@link TopStoriesFragment}
-		bundle.putString("CATEGORY", newsCategory);
+		bundle.putString(NEWS_CATEGORY, newsCategory);
 
 		// Save arguments to the fragment instance to be called upon later
 		fragment.setArguments(bundle);
@@ -65,7 +70,7 @@ public class TopStoriesFragment
 		super.onCreate(savedInstanceState);
 		// Get the passed-in argument from the fragment
 		if (getArguments() != null) {
-			mNewsCategory = getArguments().getString("CATEGORY");
+			newsCategory = getArguments().getString(NEWS_CATEGORY);
 		}
 	}
 
@@ -77,7 +82,7 @@ public class TopStoriesFragment
 		final View rootView = inflater.inflate(R.layout.recycler, container, false); // think about layout
 
 		// Create adapter
-		mAdapter = new NewsRecyclerAdapter(getContext(), new ArrayList<News>());
+		adapter = new NewsRecyclerAdapter(getContext(), new ArrayList<News>());
 
 		// Get a reference to the recycler view
 		RecyclerView recyclerView = rootView.findViewById(R.id.recycler_view);
@@ -87,12 +92,18 @@ public class TopStoriesFragment
 		recyclerView.setHasFixedSize(true);
 
 		// Set adapter for recycler view
-		recyclerView.setAdapter(mAdapter);
+		recyclerView.setAdapter(adapter);
 
 		// Get reference to the Progress bar
-		mProgressSpinner = rootView.findViewById(R.id.progress_spinner);
+		progressSpinner = rootView.findViewById(R.id.progress_spinner);
 		// Indeterminate progress bar type
-		mProgressSpinner.setIndeterminate(true);
+		progressSpinner.setIndeterminate(true);
+		// Set progress bar color
+		progressSpinner.getIndeterminateDrawable()
+				.setColorFilter(
+						ContextCompat.getColor(getContext(), R.color.colorPrimary),
+						PorterDuff.Mode.SRC_IN
+				);
 
 		// Set empty view when there is no data on the recycler view
 		TextView mEmptyStateView = rootView.findViewById(R.id.empty_text_view);
@@ -118,7 +129,7 @@ public class TopStoriesFragment
 				} else {
 					// Otherwise, display error
 					// First, hide loading indicator so error message will be visible
-					mProgressSpinner.setVisibility(View.GONE);
+					progressSpinner.setVisibility(View.GONE);
 
 					// Update empty state with no connection error message
 					mEmptyStateView.setText(R.string.no_internet_connection);
@@ -134,27 +145,27 @@ public class TopStoriesFragment
 	@Override
 	public Loader<List<News>> onCreateLoader(int id, Bundle args) {
 		// Create loader object to connect to the internet and fetch news stories from the API
-		return new NewsLoader(getActivity(), mNewsCategory);
+		return new NewsLoader(getActivity(), newsCategory);
 	}
 
 	@Override
 	public void onLoadFinished(Loader<List<News>> loader, List<News> news) {
 		// Hide progress bar
-		mProgressSpinner.setVisibility(View.GONE);
+		progressSpinner.setVisibility(View.GONE);
 
 		// Clear the adapter of previous data
-		mAdapter.clear();
+		adapter.clear();
 
 		// Check for valid list of news
 		if (news != null && !news.isEmpty()) {
 			// Add all the items fetched via loader to the adapter's data set
-			mAdapter.addAll(news);
+			adapter.addAll(news);
 		}
 	}
 
 	@Override
 	public void onLoaderReset(Loader<List<News>> loader) {
 		// Clear out items from the adapter's data set
-		mAdapter.clear();
+		adapter.clear();
 	}
 }

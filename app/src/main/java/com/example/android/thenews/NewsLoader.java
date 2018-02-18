@@ -9,12 +9,12 @@ import java.util.List;
 class NewsLoader extends AsyncTaskLoader<List<News>> {
 
 	/** URL for querying the API */
-	private String mQueryUrl;
+	private String newsCategory;
 	private List<News> mData;
 
-	NewsLoader(Context context, String queryUrl) {
+	NewsLoader(Context context, String newsCategory) {
 		super(context);
-		this.mQueryUrl = queryUrl;
+		this.newsCategory = newsCategory;
 	}
 
 	@Override
@@ -29,12 +29,12 @@ class NewsLoader extends AsyncTaskLoader<List<News>> {
 	@Override
 	public List<News> loadInBackground() {
 		// Exit early when no URL string is provided
-		if (mQueryUrl == null) {
+		if (newsCategory == null) {
 			return null;
 		}
 
 		// Query the API and return the list of top news stories
-		return NewsQueryUtils.fetchNews(mQueryUrl);
+		return NewsQueryUtils.fetchNews(newsCategory);
 	}
 
 	@Override
