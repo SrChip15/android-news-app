@@ -15,5 +15,7 @@
     <string name="science_news_title" translatable="true">science</string>
     <string name="travel_news_title" translatable="true">travel</string>
     <string name="books_news_title" translatable="true">books</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 
 </resources>
