@@ -15,7 +15,9 @@
     <string name="science_news_title" translatable="true">science</string>
     <string name="travel_news_title" translatable="true">travel</string>
     <string name="books_news_title" translatable="true">books</string>
-    <string name="appwidget_text">EXAMPLE</string>
-    <string name="add_widget">Add widget</string>
 
+    <string name="add_widget">Add widget</string>
+    <string name="sample_news_story_1">China presses the internet censorship efforts</string>
+    <string name="sample_news_story_2">Facebook lets ads bare a man\'\s chest</string>
+    <string name="sample_news_story_3">Bit by bit, whole foods gets an Amazon touch</string>
 </resources>

@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#ba000d</color>
     <color name="colorAccent">#ffff00</color>
     <color name="light_blue_no_image">#e3f2fd</color>
+    <color name="widget_text_background">#A9A9A9</color>
 </resources>
