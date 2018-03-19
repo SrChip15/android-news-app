@@ -30,15 +30,6 @@ API_KEY="MySecretKey"
 <img src="https://github.com/SrChip15/android-news-app/blob/master/splash_sceen.png" width="300"/>
 
 ```
-Project License
-
-In addition to the below copyright license, the author expressly prohibits the 
-use of this project for submission as part of course completion reqiurements to
-an educational institution or online courses, like Coursera, Udacity, edX and 
-the like. Failure to comply is by definition plagiarism and the author is 
-completely absolved from all the consequences arising out of the aforementioned
-act of plagiarism. 
-
 MIT License
 
 Copyright (c) 2018 Srinath Chintapalli
@@ -60,4 +51,13 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+Project License
+
+In addition to the below copyright license, the author expressly prohibits the 
+use of this project for submission as part of course completion reqiurements to
+an educational institution or online courses, like Coursera, Udacity, edX and 
+the like. Failure to comply is by definition plagiarism and the author is 
+completely absolved from all the consequences arising out of the aforementioned
+act of plagiarism. 
 ```
